@@ -15,9 +15,9 @@ const HarvestAction: React.FC<FarmCardActionsProps> = ({ earnings, pid }) => {
   const [pendingTx, setPendingTx] = useState(false)
   const { onReward } = useHarvest(pid)
   const rawEarningsBalance = getBalanceNumber(earnings)
-  const tmp = parseFloat(rawEarningsBalance.toFixed(8)) === 0 ? '0' : parseFloat(rawEarningsBalance.toFixed(8)).toExponential()
-  const displayBalance = rawEarningsBalance < 0.01 ? tmp : rawEarningsBalance.toLocaleString()
-
+  // const tmp = parseFloat(rawEarningsBalance.toFixed(8)) === 0 ? '0' : parseFloat(rawEarningsBalance.toFixed(8)).toExponential()
+  // const displayBalance = rawEarningsBalance < 0.01 ? tmp : rawEarningsBalance.toLocaleString()
+  const displayBalance = rawEarningsBalance.toLocaleString()
   return (
     <Flex mb="8px" justifyContent="space-between" alignItems="center">
       <Heading color={rawEarningsBalance === 0 ? 'textDisabled' : 'text'}>{displayBalance}</Heading>

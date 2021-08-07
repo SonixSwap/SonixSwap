@@ -9,12 +9,12 @@ const pools: PoolConfig[] = [
     stakingTokenAddress: '0x4BacB027E0bf98025d8EC91493F6512b9F0FA0dc',
     contractAddress: {
       97: '',
-      56: '0x26C1a6750C88636C7053026f36D4097FC1c20A19',
+      56: '0x86FaB29E3093648d619B608292b16cFdC917b286',
     },
     poolCategory: PoolCategory.CORE,
     projectLink: 'https://Sonixswap.io/',
     harvest: true,
-    tokenPerBlock: '0.001',
+    tokenPerBlock: '0.64',
     sortOrder: 1,
     isFinished: false,
     tokenDecimals: 8,
@@ -22,20 +22,20 @@ const pools: PoolConfig[] = [
   {
     salsaId: 2,
     tokenName: 'XOS',
-    earnToken: 'Ybaby',
+    earnToken: 'CDIS',
     stakingTokenName: QuoteToken.XOS,
     stakingTokenAddress: '0x4BacB027E0bf98025d8EC91493F6512b9F0FA0dc',
     contractAddress: {
       97: '',
-      56: '0x57213d1c733888281E497Cf53061331206578602',
+      56: '0x7d14c8fe264CEC8F5A7751c09a27Ca1fC4c3B366',
     },
     poolCategory: PoolCategory.CORE,
     projectLink: 'https://Sonixswap.io/',
     harvest: true,
-    tokenPerBlock: '0.0001',
+    tokenPerBlock: '0.0035',
     sortOrder: 2,
     isFinished: false,
-    tokenDecimals: 9,
+    tokenDecimals: 7,
   }
 ]
 

@@ -62,7 +62,7 @@ const DetailsSection: React.FC<ExpandableSectionProps> = ({
       </Flex>
       {!removed && (
      <Flex justifyContent="space-between">
-          <Text>Total:</Text>
+          <Text>Total Liquidity:</Text>
           <Text color="text">{totalValueFormated}</Text>
         </Flex>
       )}

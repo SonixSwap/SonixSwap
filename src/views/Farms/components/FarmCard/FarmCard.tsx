@@ -124,7 +124,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, kiwiPrice, bnbPrice,
 
   return (
     <FCard>
-      {farm.tokenSymbol === 'XOS' && <StyledCardAccent />}
+      {farm.quoteTokenSymbol === 'XOS' && <StyledCardAccent />}
       <CardHeading
         lpLabel={lpLabel}
         multiplier={farm.multiplier}
@@ -134,7 +134,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, kiwiPrice, bnbPrice,
       />
       {!removed && (
         <Flex justifyContent="space-between" alignItems="center">
-          <Text>{TranslateString(352, 'APY')}:</Text>
+          <Text>{TranslateString(352, 'APR')}:</Text>
           <Text bold style={{ display: 'flex', alignItems: 'center' }}>
             {farm.apy ? (
               <>
@@ -143,7 +143,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, kiwiPrice, bnbPrice,
                   quoteTokenAdresses={quoteTokenAdresses}
                   quoteTokenSymbol={quoteTokenSymbol}
                   tokenAddresses={tokenAddresses}
-                  kiwiPrice={kiwiPrice}
+                  kiwiPrice={bnbPrice}
                   apy={farm.apy}
                 />
                 {farmAPY}%

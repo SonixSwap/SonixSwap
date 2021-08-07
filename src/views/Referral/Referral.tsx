@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 // import { useWeb3React } from '@web3-react/core'
-import { Heading, Card, CardBody } from '@kiwifinancebsc/uikit'
+import { Heading, Card, CardBody, Text } from '@kiwifinancebsc/uikit'
 // import useI18n from 'useI'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
 import UnlockButton from 'components/UnlockButton'
@@ -32,18 +32,16 @@ const Hero = styled.div`
   `
 
 const StyledCard = styled(Card)`
-  width:70%;
+  width: 90%;
   margin-left: auto;
   margin-right: auto;
-  margin-top:24px;
+  margin-top: 18px;
   text-align: center;
-
+  
+  ${({ theme }) => theme.mediaQueries.lg} {
+    width: 70%;
+  }
 `
-
-const Actions = styled.div`
-  margin-top: 24px;
-`
-
 const StyleHeading = styled(Heading)`
     margin-top: 15px
 `
@@ -55,31 +53,31 @@ const Referral: React.FC = () => {
     return (
       <Page>
         <Hero>
-          <Heading as="h1" size="xl" color="primary" mb="50px" style={{ textAlign: 'center' }}>
-            Referral
+          <Heading as="h1" size="lg" color="primary" mb="35px" style={{ textAlign: 'center' }}>
+            Sonixswap Referral Program
           </Heading>
-          <Heading size="md" color="secondary">
-            Share the referral link below to invite your friends and earn 1% of your friends earnings FOREVER!
-          </Heading>
+          <Text fontSize="20px" bold>
+            Share below link and Earn 10% of your friends earnings FOREVER!
+          </Text>
         </Hero>
         <div>
           <Divider/>
-          <StyledCard>                  
-            <Actions>
+          <StyledCard>     
                 {account ? ( 
-                  <div>
+                  <CardBody>
+                    <div>
                       <ReferralLink />
                       <TotalReferralCount />
-                  </div>     
+                    </div> 
+                  </CardBody>    
                 ) : (
                   <CardBody>
-                  <div>
+                    <div>
                       <UnlockButton />    
                       <StyleHeading size="md">Unlock wallet to get your unique referral link</StyleHeading>    
-                  </div>   
-                    </CardBody>   
+                    </div>   
+                  </CardBody>   
                 )}
-            </Actions>
                 
           </StyledCard>
         </div>

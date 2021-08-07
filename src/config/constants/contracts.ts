@@ -9,7 +9,7 @@ export default {
   },
   masterChef: {
     97: '',
-    56: '0x3C8243922a22344A191712994030B0bD82976550',
+    56: '0x48d0a0eeceefEAFa6CCB4f9933D266369512E6E7',
   },
   salsaChef: {
     97: '',
@@ -80,8 +80,8 @@ export default {
     56: '0x223bFC3adaDE278151140f1d42Fb0d80334137b4',
     97: '',
   },
-  ybaby: {
-    56: '0x006276057Dc847e2e73298Bf0Aef764B853DC2fD',
+  cdis: {
+    56: '0x71B283F6065Dd95Cd1b14d01925A7f4DD7976009',
     97: '',
   },
   referral: {

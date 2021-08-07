@@ -4,6 +4,7 @@
       { "internalType": "contract WBNB", "name": "_wbnb", "type": "address" },
       { "internalType": "address", "name": "_devaddr", "type": "address" },
       { "internalType": "address", "name": "_feeAddress", "type": "address" },
+      { "internalType": "address", "name": "_topLeaderAddress", "type": "address" },
       { "internalType": "uint256", "name": "_wbnbPerBlock", "type": "uint256" },
       { "internalType": "uint256", "name": "_startBlock", "type": "uint256" }
     ],
@@ -221,9 +222,23 @@
     "type": "function"
   },
   {
+    "inputs": [{ "internalType": "address", "name": "_topLeaderAddress", "type": "address" }],
+    "name": "setTopLeaderAddress",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
     "inputs": [],
     "name": "startBlock",
     "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "topLeaderAddress",
+    "outputs": [{ "internalType": "address", "name": "", "type": "address" }],
     "stateMutability": "view",
     "type": "function"
   },

@@ -63,6 +63,7 @@ const Farms: React.FC = () => {
   const farmsList = useCallback(
     (farmsToDisplay, removed: boolean) => {
       const kiwiPriceVsBNB = new BigNumber(farmsLP.find((farm) => farm.pid === KIWI_POOL_PID)?.tokenPriceVsQuote || 0)
+
       const farmsToDisplayWithAPY: FarmWithStakedValue[] = farmsToDisplay.map((farm) => {
         if (!farm.tokenAmount || !farm.lpTotalInQuoteToken || !farm.lpTotalInQuoteToken) {
           return farm
@@ -70,14 +71,14 @@ const Farms: React.FC = () => {
         const kiwiRewardPerBlock = farm.wbnbPerBlock.times(farm.poolWeight)
         const kiwiRewardPerYear = kiwiRewardPerBlock.times(BLOCKS_PER_YEAR)
 
-        let apy = bnbPrice.times(kiwiRewardPerYear).div(farm.lpTotalInQuoteToken)
+        let apy = kiwiRewardPerYear.div(farm.lpTotalInQuoteToken)
         if (farm.quoteTokenSymbol === QuoteToken.USDT || farm.quoteTokenSymbol === QuoteToken.USDC) {
-          apy = bnbPrice.times(kiwiRewardPerYear).div(farm.lpTotalInQuoteToken).times(bnbPrice)
+          apy = kiwiRewardPerYear.div(farm.lpTotalInQuoteToken).times(bnbPrice)
         } else if (farm.quoteTokenSymbol === QuoteToken.XOS) {
           apy = bnbPrice.times(kiwiRewardPerYear).div(farm.lpTotalInQuoteToken).div(kiwiPrice)
         } else if (farm.dual) {
           const kiwiApy =
-            farm && bnbPrice.times(kiwiRewardPerBlock).times(BLOCKS_PER_YEAR).div(farm.lpTotalInQuoteToken)
+            farm && kiwiRewardPerBlock.times(BLOCKS_PER_YEAR).div(farm.lpTotalInQuoteToken)
           const dualApy =
             farm.tokenPriceVsQuote &&
             new BigNumber(farm.tokenPriceVsQuote)
@@ -109,7 +110,7 @@ const Farms: React.FC = () => {
   return (
     <Page>
       <Hero>
-        <Heading as="h1" size="xl" color="primary" mb="50px" style={{ textAlign: 'center' }}>
+        <Heading as="h1" size="lg" color="primary" mb="35px" style={{ textAlign: 'center' }}>
           {TranslateString(999, 'Stake LP tokens to earn BNB')}
         </Heading>
         <FarmTabButtons />

@@ -10,6 +10,7 @@ import Menu from './components/Menu'
 import PageLoader from './components/PageLoader'
 // import NftGlobalNotification from './views/Nft/components/NftGlobalNotification'
 import Pools from './views/Pools'
+import CommingSoon from './views/CommingSoon'
 
 // Route-based code splitting
 // Only pool is included in the main bundle because of it's the most visited page'
@@ -17,6 +18,7 @@ const Home = lazy(() => import('./views/Home'))
 const Farms = lazy(() => import('./views/Farms'))
 const NotFound = lazy(() => import('./views/NotFound'))
 const Referral = lazy(() => import('./views/Referral'))
+const CoomingSoon = lazy(() => import('./views/CommingSoon'))
 // const Nft = lazy(() => import('./views/Nft'))
 
 // This config is required for number formating
@@ -52,8 +54,14 @@ const App: React.FC = () => {
               <Route path="/pools">
                 <Pools />
               </Route>
+              <Route path="/cloudfarms">
+                <CommingSoon />
+              </Route>
+              <Route path="/cloudpools">
+                <CommingSoon />
+              </Route>
               <Route path="/referral">
-                  <Referral />
+                <Referral />
               </Route>
               {/* Redirect */}
               <Route path="/staking">

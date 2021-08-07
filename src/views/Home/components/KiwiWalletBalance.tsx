@@ -20,7 +20,7 @@ const KiwiWalletBalance = () => {
     )
   }
 
-  return <CardValue value={getBalanceNumber(kiwiBalance)} fontSize="24px" />
+  return <CardValue value={getBalanceNumber(kiwiBalance, 8)} fontSize="24px" />
 }
 
 export default KiwiWalletBalance

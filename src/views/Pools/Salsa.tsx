@@ -87,7 +87,7 @@ const Farm: React.FC = () => {
   return (
     <Page>
       <Hero>
-        <Heading as="h1" size="xl" color="primary" mb="50px" style={{ textAlign: 'center' }}>
+        <Heading as="h1" size="lg" color="primary" mb="35px" style={{ textAlign: 'center' }}>
           {TranslateString(999, 'XOS Smart Staking Pool')}
         </Heading>
         <PoolTabButtons />

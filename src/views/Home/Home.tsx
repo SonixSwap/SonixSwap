@@ -70,10 +70,10 @@ const Home: React.FC = () => {
   return (
     <Page>
       <Hero>
-        <Heading as="h1" size="xl" mb="24px" color="secondary">
+        <Heading as="h1" size="lg" mb="35px" color="primary">
           {TranslateString(576, 'Sonixswap')}
         </Heading>
-        <Text>{TranslateString(578, 'The Best Modern Yield Farm on Binance Smart Chain.')}</Text>
+        <Text fontSize="20px" bold>{TranslateString(578, 'The Best Modern Yield Farm on Binance Smart Chain.')}</Text>
       </Hero>
       <div>
       <Cards>

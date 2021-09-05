@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { AbiItem } from 'web3-utils'
 import { ContractOptions } from 'web3-eth-contract'
 import useWeb3 from 'hooks/useWeb3'
-import { getMasterChefAddress, getKiwiAddress, getLotteryAddress, getLotteryTicketAddress } from 'utils/addressHelpers'
+import { getMasterChefAddress, getKiwiAddress, getLotteryAddress, getLotteryTicketAddress,getMasterChefAddressXOS } from 'utils/addressHelpers'
 import { poolsConfig } from 'config/constants'
 import { PoolCategory } from 'config/constants/types'
 import ifo from 'config/abi/ifo.json'
@@ -12,6 +12,7 @@ import kiwiRabbits from 'config/abi/kiwiRabbits.json'
 import lottery from 'config/abi/lottery.json'
 import lotteryTicket from 'config/abi/lotteryNft.json'
 import masterChef from 'config/abi/masterchef.json'
+import masterChefXOS from 'config/abi/masterchefXOS.json'
 import salsaChef from 'config/abi/salsaChef.json'
 import salsaChefBnb from 'config/abi/salsaChefBnb.json'
 
@@ -74,6 +75,11 @@ export const useSalsaChef = (id) => {
   const rawAbi = config.poolCategory === PoolCategory.BINANCE ? salsaChefBnb : salsaChef
   const abi = (rawAbi as unknown) as AbiItem
   return useContract(abi, config.contractAddress[process.env.REACT_APP_CHAIN_ID])
+}
+
+export const useMasterchefXOS = () => {
+  const abi = (masterChefXOS as unknown) as AbiItem
+  return useContract(abi, getMasterChefAddressXOS())
 }
 
 export default useContract

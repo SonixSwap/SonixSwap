@@ -1,9 +1,9 @@
 import BigNumber from 'bignumber.js'
-import { useEffect } from 'react'
+import React,{ useEffect, useState  } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import useRefresh from 'hooks/useRefresh'
-import { fetchFarmsPublicDataAsync, fetchPoolsPublicDataAsync, fetchPoolsUserDataAsync } from './actions'
-import { State, Farm, Pool } from './types'
+import { fetchFarmsPublicDataAsync, fetchPoolsPublicDataAsync, fetchCloudFarmsPublicDataAsync, fetchCloudFarmsUserDataAsync } from './actions'
+import { State, Farm, Pool,CloudFarm } from './types'
 import { QuoteToken } from '../config/constants/types'
 
 const ZERO = new BigNumber(0)
@@ -14,6 +14,7 @@ export const useFetchPublicData = () => {
   useEffect(() => {
     dispatch(fetchFarmsPublicDataAsync())
     dispatch(fetchPoolsPublicDataAsync())
+    dispatch(fetchCloudFarmsPublicDataAsync())
   }, [dispatch, slowRefresh])
 }
 
@@ -45,6 +46,7 @@ export const useFarmUser = (pid) => {
   }
 }
 
+
 // Pools
 
 export const usePools = (account): Pool[] => {
@@ -52,7 +54,7 @@ export const usePools = (account): Pool[] => {
   const dispatch = useDispatch()
   useEffect(() => {
     if (account) {
-      dispatch(fetchPoolsUserDataAsync(account))
+      dispatch(fetchCloudFarmsUserDataAsync(account))
     }
   }, [account, dispatch, fastRefresh])
 
@@ -61,6 +63,27 @@ export const usePools = (account): Pool[] => {
 }
 
 export const usePoolFromPid = (salsaId): Pool => {
+  const pool = useSelector((state: State) => state.pools.data.find((p) => p.salsaId === salsaId))
+  return pool
+}
+
+// cloudFarms
+
+export const useCloudFarms = (account): Pool[] => {
+  const { fastRefresh } = useRefresh()
+  const dispatch = useDispatch()
+  useEffect(() => {
+    
+    if (account) {
+      dispatch(fetchCloudFarmsUserDataAsync(account))
+    }
+  }, [account, dispatch, fastRefresh])
+
+  const pools = useSelector((state: State) => state.cloudFarms.data)
+  return pools
+}
+
+export const useCloudFarmsFromPid = (salsaId): Pool => {
   const pool = useSelector((state: State) => state.pools.data.find((p) => p.salsaId === salsaId))
   return pool
 }

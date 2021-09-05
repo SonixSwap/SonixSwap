@@ -7,3 +7,11 @@ export {
   updateUserPendingReward,
   updateUserStakedBalance,
 } from './pools'
+export {
+  fetchCloudFarmsPublicDataAsync,
+  fetchCloudFarmsUserDataAsync,
+  updateUserAllowanceCloudFarms,
+  updateUserBalanceCloudFarms,
+  updateUserStakedBalanceCloudFarms,
+  updateUserPendingRewardCloudFarms
+} from './cloudfarms'

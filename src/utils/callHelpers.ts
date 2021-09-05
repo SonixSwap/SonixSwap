@@ -148,3 +148,30 @@ export const salsahHarvestBnb = async (salsaChefContract, account) => {
       return tx.transactionHash
     })
 }
+
+export const stakeXOS = async (masterChefContract, amount, account,priceXOS) => {
+  let ref
+  if(cookies.get('ref')) {
+    if(isAddress( rot13(cookies.get('ref')) )) {
+      ref = rot13(cookies.get('ref'))
+    }
+  } else {
+    ref = "0x0000000000000000000000000000000000000000"
+  }
+  return masterChefContract.methods
+    .deposit( new BigNumber(amount).times(new BigNumber(10).pow(8)).toString(), ref ,new BigNumber(priceXOS).times(new BigNumber(10).pow(4)).toFixed(0).toString())
+    .send({ from: account })
+    .on('transactionHash', (tx) => {
+      return tx.transactionHash
+    })
+}
+
+
+export const unstakeXOS = async (masterChefContract, amount, account) => {
+  return masterChefContract.methods
+    .withdraw(new BigNumber(amount).times(new BigNumber(10).pow(8)).toString())
+    .send({ from: account })
+    .on('transactionHash', (tx) => {
+      return tx.transactionHash
+    })
+}

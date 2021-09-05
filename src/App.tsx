@@ -16,6 +16,7 @@ import CommingSoon from './views/CommingSoon'
 // Only pool is included in the main bundle because of it's the most visited page'
 const Home = lazy(() => import('./views/Home'))
 const Farms = lazy(() => import('./views/Farms'))
+const CloudFarms = lazy(() => import('./views/CloudFarms'))
 const NotFound = lazy(() => import('./views/NotFound'))
 const Referral = lazy(() => import('./views/Referral'))
 const CoomingSoon = lazy(() => import('./views/CommingSoon'))
@@ -55,7 +56,7 @@ const App: React.FC = () => {
                 <Pools />
               </Route>
               <Route path="/cloudfarms">
-                <CommingSoon />
+                <CloudFarms />
               </Route>
               <Route path="/cloudpools">
                 <CommingSoon />

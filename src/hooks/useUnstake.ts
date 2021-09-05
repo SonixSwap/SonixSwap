@@ -6,9 +6,10 @@ import {
   updateUserStakedBalance,
   updateUserBalance,
   updateUserPendingReward,
+  fetchCloudFarmsPublicDataAsync,updateUserStakedBalanceCloudFarms,updateUserBalanceCloudFarms
 } from 'state/actions'
-import { unstake, salsaUnstake, salsaEmegencyUnstake } from 'utils/callHelpers'
-import { useMasterchef, useSalsaChef } from './useContract'
+import { unstake, salsaUnstake, salsaEmegencyUnstake,unstakeXOS } from 'utils/callHelpers'
+import { useMasterchef, useSalsaChef, useMasterchefXOS } from './useContract'
 
 const useUnstake = (pid: number) => {
   const dispatch = useDispatch()
@@ -58,4 +59,23 @@ export const useSalsaUnstake = (salsaId) => {
   return { onUnstake: handleUnstake }
 }
 
-export default useUnstake
+export const useUnStakeXOS = (salsaId) => {
+  const dispatch = useDispatch()
+  const { account } = useWallet()
+  const masterChefContract = useMasterchefXOS()
+
+  const handleStake = useCallback(
+    async (amount: string) => {
+      const txHash = await unstakeXOS(masterChefContract,amount,account);
+      dispatch(fetchCloudFarmsPublicDataAsync())
+      console.info(txHash)
+      dispatch(updateUserStakedBalanceCloudFarms(salsaId, account))
+      dispatch(updateUserBalanceCloudFarms(salsaId, account))
+    },
+    [account, dispatch, masterChefContract, salsaId],
+  )
+
+  return { onUnstake: handleStake }
+}
+
+export default useUnStakeXOS

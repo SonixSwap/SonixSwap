@@ -87,5 +87,9 @@ export default {
   referral: {
     56: '0x485e9cCe3939e5B66c5D867D849996a7FBbf34cB',
     97: ''
-  }
+  },
+  masterChefXOS: {
+    97: '',
+    56: '0x844AB3736d9205BCaaA3BB8735a4a56563041dF2',
+  },
 }

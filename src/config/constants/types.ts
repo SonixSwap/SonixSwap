@@ -68,6 +68,24 @@ export interface FarmConfig {
   }
 }
 
+export interface CloudFarmConfig {
+  salsaId: number
+  image?: string
+  tokenName: string
+  earnToken: string
+  stakingTokenName: QuoteToken
+  stakingLimit?: number
+  stakingTokenAddress?: string
+  contractAddress: Address
+  poolCategory: PoolCategory
+  projectLink: string
+  tokenPerBlock: string
+  sortOrder?: number
+  harvest?: boolean
+  isFinished?: boolean
+  tokenDecimals: number
+}
+
 export interface PoolConfig {
   salsaId: number
   image?: string

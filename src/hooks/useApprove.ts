@@ -5,7 +5,7 @@ import { ethers } from 'ethers'
 import { useDispatch } from 'react-redux'
 import { updateUserAllowance, fetchFarmUserDataAsync } from 'state/actions'
 import { approve } from 'utils/callHelpers'
-import { useMasterchef, useKiwi, useSalsaChef, useLottery } from './useContract'
+import { useMasterchef, useKiwi, useSalsaChef, useLottery, useMasterchefXOS } from './useContract'
 
 // Approve a Farm
 export const useApprove = (lpContract: Contract) => {
@@ -78,4 +78,22 @@ export const useIfoApprove = (tokenContract: Contract, spenderAddress: string) =
   }, [account, spenderAddress, tokenContract])
 
   return onApprove
+}
+
+export const useApproveXOS = (lpContract: Contract) => {
+  const dispatch = useDispatch()
+  const { account }: { account: string } = useWallet()
+  const masterChefContract = useMasterchefXOS()
+
+  const handleApprove = useCallback(async () => {
+    try {
+      const tx = await approve(lpContract, masterChefContract, account)
+      dispatch(fetchFarmUserDataAsync(account))
+      return tx
+    } catch (e) {
+      return false
+    }
+  }, [account, dispatch, lpContract, masterChefContract])
+
+  return { onApprove: handleApprove }
 }

@@ -1,5 +1,5 @@
 import BigNumber from 'bignumber.js'
-import { FarmConfig, PoolConfig } from 'config/constants/types'
+import { FarmConfig, PoolConfig,CloudFarmConfig } from 'config/constants/types'
 
 export interface Farm extends FarmConfig {
   tokenAmount?: BigNumber
@@ -25,6 +25,23 @@ export interface Pool extends PoolConfig {
     stakingTokenBalance: BigNumber
     stakedBalance: BigNumber
     pendingReward: BigNumber
+    totalStaking: BigNumber
+    xosprice: number
+    unstakeBalance:BigNumber
+  }
+}
+
+export interface CloudFarm extends CloudFarmConfig {
+  totalStaked?: BigNumber
+  startBlock?: number
+  endBlock?: number
+  userData?: {
+    allowance: BigNumber
+    stakingTokenBalance: BigNumber
+    stakedBalance: BigNumber
+    pendingReward: BigNumber
+    totalStaking: BigNumber
+    xosprice: number
   }
 }
 
@@ -32,6 +49,10 @@ export interface Pool extends PoolConfig {
 
 export interface FarmsState {
   data: Farm[]
+}
+
+export interface CloudFarmsState {
+  data: Pool[]
 }
 
 export interface PoolsState {
@@ -43,4 +64,5 @@ export interface PoolsState {
 export interface State {
   farms: FarmsState
   pools: PoolsState
+  cloudFarms:CloudFarmsState
 }

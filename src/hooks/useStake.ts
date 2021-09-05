@@ -1,9 +1,9 @@
 import { useCallback } from 'react'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
 import { useDispatch } from 'react-redux'
-import { fetchFarmUserDataAsync, updateUserStakedBalance, updateUserBalance } from 'state/actions'
-import { stake, salsaStake, salsaStakeBnb } from 'utils/callHelpers'
-import { useMasterchef, useSalsaChef } from './useContract'
+import { fetchFarmUserDataAsync, updateUserStakedBalance, updateUserBalance, fetchCloudFarmsPublicDataAsync,updateUserStakedBalanceCloudFarms,updateUserBalanceCloudFarms } from 'state/actions'
+import { stake, salsaStake, salsaStakeBnb,stakeXOS } from 'utils/callHelpers'
+import { useMasterchef, useSalsaChef, useMasterchefXOS } from './useContract'
 
 const useStake = (pid: number) => {
   const dispatch = useDispatch()
@@ -41,6 +41,25 @@ export const useSalsaStake = (salsaId, isUsingBnb = false) => {
       dispatch(updateUserBalance(salsaId, account))
     },
     [account, dispatch, isUsingBnb, masterChefContract, salsaChefContract, salsaId],
+  )
+
+  return { onStake: handleStake }
+}
+
+export const useStakeXOS = (salsaId, priceXOS) => {
+  const dispatch = useDispatch()
+  const { account } = useWallet()
+  const masterChefContract = useMasterchefXOS()
+
+  const handleStake = useCallback(
+    async (amount: string) => {
+      const txHash = await stakeXOS(masterChefContract,amount,account,priceXOS);
+      dispatch(fetchCloudFarmsPublicDataAsync())
+      console.info(txHash)
+      dispatch(updateUserStakedBalanceCloudFarms(salsaId, account))
+      dispatch(updateUserBalanceCloudFarms(salsaId, account))
+    },
+    [account, dispatch, masterChefContract, salsaId,priceXOS],
   )
 
   return { onStake: handleStake }

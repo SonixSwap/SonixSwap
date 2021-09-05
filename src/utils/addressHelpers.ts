@@ -26,3 +26,6 @@ export const getLotteryTicketAddress = () => {
 export const getReferralAddress = () => {
   return addresses.referral[chainId]
 }
+export const getMasterChefAddressXOS = () => {
+  return addresses.masterChefXOS[chainId]
+}

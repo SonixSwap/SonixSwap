@@ -2,7 +2,7 @@ import { PoolConfig, QuoteToken, PoolCategory } from './types'
 
 const pools: PoolConfig[] = [
   {
-    salsaId: 3,
+    salsaId: 4,
     tokenName: 'XOS',
     earnToken: 'XEOS',
     stakingTokenName: QuoteToken.XOS,
